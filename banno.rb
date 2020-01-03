@@ -2,9 +2,8 @@ require 'typhoeus'
 require 'base64'
 require 'json'
 
-@consumer_key = "" # Add your API key here
-@consumer_secret = "" # Add your API secret key here
-
+@consumer_key = ENV["KEY"]
+@consumer_secret = ENV["SECRET"]
 @bearer_token_url = "https://api.twitter.com/oauth2/token"
 @stream_url = "https://api.twitter.com/labs/1/tweets/stream/sample"
 
