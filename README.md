@@ -5,3 +5,4 @@
 2. Install bundler `gem install bundler`
 3. `cd` to project root
 4. `bundle install` to install ruby gems
+5. 
