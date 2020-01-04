@@ -9,3 +9,4 @@ gem "twurl"
 gem 'typhoeus'
 gem 'base64'
 gem 'json'
+gem 'curb'
