@@ -2,6 +2,7 @@
 # Created by https://www.gitignore.io/api/ruby,macos,windows
 # Edit at https://www.gitignore.io/?templates=ruby,macos,windows
 
+*.sh
 *.ps1
 
 ### macOS ###
