@@ -2,13 +2,13 @@ import os
 import requests
 import json
 import time
-import sys
 import asyncio
 from reprint import output
 import datetime as dt
 from pprint import pprint
 from requests.auth import AuthBase
 from requests.auth import HTTPBasicAuth
+import requests_async
 
 consumer_key = os.environ['KEY']
 consumer_secret = os.environ['SECRET']
@@ -56,14 +56,14 @@ class BearerTokenAuth(AuthBase):
     return r
 
 async def stream_connect(auth):
-  response = requests.get(stream_url, auth=auth, headers={"User-Agent": "TwitterDevSampledStreamQuickStartPython"}, stream=True)
-  for response_line in response.iter_lines():
+  response = await requests_async.get(stream_url, auth=auth, headers={"User-Agent": "TwitterDevSampledStreamQuickStartPython"}, stream=True)
+  async for response_line in response.iter_lines():
     if response_line:
       # global stats
       # stats["total_tweets"]+=1
-      await process_tweet(json.loads(response_line))
+      process_tweet(json.loads(response_line))
 
-async def process_tweet(tweet):
+def process_tweet(tweet):
   global stats, start_time
 
   stats["total_tweets"]+=1

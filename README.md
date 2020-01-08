@@ -1,6 +1,7 @@
 # banno
 
-### This is a work-in-progress.
+## This is a work-in-progress
+
  An application that connects to the Tweets API and processes incoming tweets to compute various statistics.
 
 1. Install Python 3.7.4
