@@ -92,7 +92,8 @@ def process_tweet(tweet):
   stats["top_hashtags"]=Counter(hashtags).most_common(5)
   
   global num_tweets_with_urls
-  find_urls(tweet)
+  if find_urls(tweet) > 0:
+    num_tweets_with_urls+=1
     
   stats["top_domains"]=Counter(domains).most_common(5)
   stats["perc_url"]=(num_tweets_with_urls/stats["total_tweets"])*100
@@ -100,8 +101,6 @@ def process_tweet(tweet):
   if time_elapsed >= log_interval:
     log_to_console(stats)
     start_time = time.time()
-
-  #pprint(tweet['data']['text'])
 
 def log_to_console(stats):
   os.system('clear')
@@ -115,10 +114,8 @@ def find_urls(tweet):
       if urlparse(url['expanded_url']).netloc not in domains:
         domains[urlparse(url['expanded_url']).netloc]=1
         urls_in_tweet+=1
-        #pprint(urlparse(url['expanded_url']).netloc)
       else:
         domains[urlparse(url['expanded_url']).netloc]+=1
-      #pprint(urlparse(url['expanded_url']).netloc)
   except:
     pass
   return urls_in_tweet
