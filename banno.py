@@ -4,6 +4,7 @@ import json
 import time
 import asyncio
 import emoji
+from collections import Counter
 from reprint import output
 import datetime as dt
 from pprint import pprint
@@ -26,10 +27,12 @@ stats = {
   "top_hashtags": [],
   "perc_url": 0,
   "perc_img": 0,
-  "top_domains": []
+  "top_domains": [],
+  "top_emoji": []
   }
 
 emojis={}
+hashtags={}
 
 num_tweets_with_emojis=0
 
@@ -76,11 +79,13 @@ def process_tweet(tweet):
   stats["avg_per_hr"] = stats["avg_per_min"]*60
   
   global num_tweets_with_emojis
-  if has_emoji(tweet['data']['text']):
+  if has_emoji(tweet['data']['text']) > 0:
     num_tweets_with_emojis+=1
 
   stats["perc_emoji"] = (num_tweets_with_emojis/stats["total_tweets"])*100
-
+  stats["top_emoji"] = Counter(emojis).most_common(3)
+  get_hashtags(tweet)
+  stats["top_hashtags"]=Counter(hashtags).most_common(3)
 
   if time_elapsed >= log_interval:
     log_to_console(stats)
@@ -89,19 +94,27 @@ def process_tweet(tweet):
 def log_to_console(stats):
   os.system('clear')
   pprint(stats)
-  pprint(emojis)
+
+def get_hashtags(tweet):
+  global hashtags
+  for term in tweet['data']['text'].split():
+    if term.startswith('#'):
+      if not term in hashtags:
+        hashtags[term]=1
+      else:
+        hashtags[term]+=1
 
 def has_emoji(tweet):
+  emojis_in_tweet=0
   for character in tweet:
     if character in emoji.UNICODE_EMOJI:
-      return True
+      emojis_in_tweet+=1
       global emojis
       if not character in emojis:
         emojis[character]=1
       else:
         emojis[character]+=1
-    else:
-      return False
+  return emojis_in_tweet
   
 
 bearer_token = BearerTokenAuth(consumer_key, consumer_secret)
