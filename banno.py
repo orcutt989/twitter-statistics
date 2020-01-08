@@ -5,8 +5,8 @@ from pprint import pprint
 from requests.auth import AuthBase
 from requests.auth import HTTPBasicAuth
 
-consumer_key = "" # Add your API key here
-consumer_secret = "" # Add your API secret key here
+consumer_key = os.environ['KEY']
+consumer_secret = os.environ['SECRET']
 
 stream_url = "https://api.twitter.com/labs/1/tweets/stream/sample"
 
