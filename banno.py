@@ -5,6 +5,7 @@ import time
 import asyncio
 import emoji
 import re
+from urllib.parse import urlparse
 from collections import Counter
 from reprint import output
 import datetime as dt
@@ -37,6 +38,7 @@ hashtags={}
 domains={}
 
 num_tweets_with_emojis=0
+num_tweets_with_urls=0
 
 stream_url = "https://api.twitter.com/labs/1/tweets/stream/sample"
 
@@ -85,28 +87,41 @@ def process_tweet(tweet):
     num_tweets_with_emojis+=1
 
   stats["perc_emoji"] = (num_tweets_with_emojis/stats["total_tweets"])*100
-  stats["top_emoji"] = Counter(emojis).most_common(3)
+  stats["top_emoji"] = Counter(emojis).most_common(5)
   get_hashtags(tweet)
-  stats["top_hashtags"]=Counter(hashtags).most_common(3)
+  stats["top_hashtags"]=Counter(hashtags).most_common(5)
+  
+  global num_tweets_with_urls
   find_urls(tweet)
-  stats["top_domains"]=Counter(domains).most_common(3)
+    
+  stats["top_domains"]=Counter(domains).most_common(5)
+  stats["perc_url"]=(num_tweets_with_urls/stats["total_tweets"])*100
 
   if time_elapsed >= log_interval:
     log_to_console(stats)
     start_time = time.time()
+
+  #pprint(tweet['data']['text'])
 
 def log_to_console(stats):
   os.system('clear')
   pprint(stats)
 
 def find_urls(tweet):
-  urls=re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]\
-    |(?:%[0-9a-fA-F][0-9a-fA-F]))+', tweet['data']['text'])
-  for url in urls:
-    if url not in domains:
-      domains[url]=1
-    else:
-      domains[url]+=1
+  urls_in_tweet=0
+  #urls=re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', tweet['data']['entities']['urls']['expanded_url'])
+  try:
+    for url in tweet['data']['entities']['urls']:
+      if urlparse(url['expanded_url']).netloc not in domains:
+        domains[urlparse(url['expanded_url']).netloc]=1
+        urls_in_tweet+=1
+        #pprint(urlparse(url['expanded_url']).netloc)
+      else:
+        domains[urlparse(url['expanded_url']).netloc]+=1
+      #pprint(urlparse(url['expanded_url']).netloc)
+  except:
+    pass
+  return urls_in_tweet
 
 
 def get_hashtags(tweet):
