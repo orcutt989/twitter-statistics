@@ -3,6 +3,7 @@ import requests
 import json
 import time
 import asyncio
+import emoji
 from reprint import output
 import datetime as dt
 from pprint import pprint
@@ -27,6 +28,10 @@ stats = {
   "perc_img": 0,
   "top_domains": []
   }
+
+emojis={}
+
+num_tweets_with_emojis=0
 
 stream_url = "https://api.twitter.com/labs/1/tweets/stream/sample"
 
@@ -59,8 +64,6 @@ async def stream_connect(auth):
   response = await requests_async.get(stream_url, auth=auth, headers={"User-Agent": "TwitterDevSampledStreamQuickStartPython"}, stream=True)
   async for response_line in response.iter_lines():
     if response_line:
-      # global stats
-      # stats["total_tweets"]+=1
       process_tweet(json.loads(response_line))
 
 def process_tweet(tweet):
@@ -68,10 +71,16 @@ def process_tweet(tweet):
 
   stats["total_tweets"]+=1
   time_elapsed = time.time() - start_time
-
   stats["avg_per_sec"] = stats["total_tweets"]/(time.time()-launch_time)
   stats["avg_per_min"] = stats["avg_per_sec"]*60
   stats["avg_per_hr"] = stats["avg_per_min"]*60
+  
+  global num_tweets_with_emojis
+  if has_emoji(tweet['data']['text']):
+    num_tweets_with_emojis+=1
+
+  stats["perc_emoji"] = (num_tweets_with_emojis/stats["total_tweets"])*100
+
 
   if time_elapsed >= log_interval:
     log_to_console(stats)
@@ -80,6 +89,19 @@ def process_tweet(tweet):
 def log_to_console(stats):
   os.system('clear')
   pprint(stats)
+  pprint(emojis)
+
+def has_emoji(tweet):
+  for character in tweet:
+    if character in emoji.UNICODE_EMOJI:
+      return True
+      global emojis
+      if not character in emojis:
+        emojis[character]=1
+      else:
+        emojis[character]+=1
+    else:
+      return False
   
 
 bearer_token = BearerTokenAuth(consumer_key, consumer_secret)
