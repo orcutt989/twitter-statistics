@@ -4,6 +4,7 @@ import json
 import time
 import asyncio
 import emoji
+import re
 from collections import Counter
 from reprint import output
 import datetime as dt
@@ -33,6 +34,7 @@ stats = {
 
 emojis={}
 hashtags={}
+domains={}
 
 num_tweets_with_emojis=0
 
@@ -86,6 +88,8 @@ def process_tweet(tweet):
   stats["top_emoji"] = Counter(emojis).most_common(3)
   get_hashtags(tweet)
   stats["top_hashtags"]=Counter(hashtags).most_common(3)
+  find_urls(tweet)
+  stats["top_domains"]=Counter(domains).most_common(3)
 
   if time_elapsed >= log_interval:
     log_to_console(stats)
@@ -94,6 +98,16 @@ def process_tweet(tweet):
 def log_to_console(stats):
   os.system('clear')
   pprint(stats)
+
+def find_urls(tweet):
+  urls=re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]\
+    |(?:%[0-9a-fA-F][0-9a-fA-F]))+', tweet['data']['text'])
+  for url in urls:
+    if url not in domains:
+      domains[url]=1
+    else:
+      domains[url]+=1
+
 
 def get_hashtags(tweet):
   global hashtags
