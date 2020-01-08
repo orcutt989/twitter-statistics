@@ -13,8 +13,8 @@ from requests.auth import HTTPBasicAuth
 consumer_key = os.environ['KEY']
 consumer_secret = os.environ['SECRET']
 
-log_interval=5
-start_time = time.time()
+log_interval=2.0
+launch_time = start_time = time.time()
 
 stats = {
   "total_tweets": 0,
@@ -65,8 +65,13 @@ async def stream_connect(auth):
 
 async def process_tweet(tweet):
   global stats, start_time
+
   stats["total_tweets"]+=1
-  time_elapsed = int(time.time() - start_time)
+  time_elapsed = time.time() - start_time
+
+  stats["avg_per_sec"] = stats["total_tweets"]/(time.time()-launch_time)
+  stats["avg_per_min"] = stats["avg_per_sec"]*60
+  stats["avg_per_hr"] = stats["avg_per_min"]*60
 
   if time_elapsed >= log_interval:
     log_to_console(stats)
