@@ -39,6 +39,7 @@ domains={}
 
 num_tweets_with_emojis=0
 num_tweets_with_urls=0
+num_tweets_with_images=0
 
 stream_url = "https://api.twitter.com/labs/1/tweets/stream/sample"
 
@@ -91,10 +92,20 @@ def process_tweet(tweet):
   get_hashtags(tweet)
   stats["top_hashtags"]=Counter(hashtags).most_common(5)
   
-  global num_tweets_with_urls
-  if find_urls(tweet) > 0:
+  global num_tweets_with_urls, num_tweets_with_images
+  urls_in_tweet=0
+  contains_img_url=False
+  try:
+    urls_in_tweet, contains_img_url = find_urls(tweet)
+  except:
+    pass
+
+  if urls_in_tweet > 0:
     num_tweets_with_urls+=1
-    
+  if contains_img_url:
+    num_tweets_with_images+=1
+
+  stats["perc_img"]=(num_tweets_with_images/stats["total_tweets"])*100
   stats["top_domains"]=Counter(domains).most_common(5)
   stats["perc_url"]=(num_tweets_with_urls/stats["total_tweets"])*100
 
@@ -108,18 +119,24 @@ def log_to_console(stats):
 
 def find_urls(tweet):
   urls_in_tweet=0
-  #urls=re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', tweet['data']['entities']['urls']['expanded_url'])
+  images_in_tweet=0
   try:
     for url in tweet['data']['entities']['urls']:
       if urlparse(url['expanded_url']).netloc not in domains:
         domains[urlparse(url['expanded_url']).netloc]=1
         urls_in_tweet+=1
       else:
-        domains[urlparse(url['expanded_url']).netloc]+=1
+        domains[urlparse(url['expanded_url']).netloc]+=1 
+      contains_img_url=has_image(url['expanded_url'])
   except:
     pass
-  return urls_in_tweet
+  return urls_in_tweet, contains_img_url
 
+def has_image(url):
+  if re.match("\.(jpeg|jpg|gif|png)$",url):
+    return True
+  else:
+    return False
 
 def get_hashtags(tweet):
   global hashtags
