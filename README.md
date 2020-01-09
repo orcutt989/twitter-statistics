@@ -24,3 +24,4 @@
 2. Containerize
 3. Interface with front-end like Splunk or Kibana
 4. Better async
+5. Testing, including async tests
