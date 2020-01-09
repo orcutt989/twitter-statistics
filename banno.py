@@ -20,6 +20,7 @@ consumer_secret = os.environ['SECRET']
 log_interval=2.0
 launch_time = start_time = time.time()
 
+# Initialize global variables
 stats = {
   "total_tweets": 0,
   "avg_per_sec": 0,
@@ -32,15 +33,15 @@ stats = {
   "top_domains": [],
   "top_emoji": []
   }
-
 emojis={}
 hashtags={}
 domains={}
-
 num_tweets_with_emojis=0
 num_tweets_with_urls=0
 num_tweets_with_images=0
 
+# Sample stream url
+# From https://developer.twitter.com/en/docs/labs/sampled-stream/quick-start
 stream_url = "https://api.twitter.com/labs/1/tweets/stream/sample"
 
 # Gets a bearer token
@@ -72,9 +73,9 @@ async def stream_connect(auth):
   response = await requests_async.get(stream_url, auth=auth, headers={"User-Agent": "TwitterDevSampledStreamQuickStartPython"}, stream=True)
   async for response_line in response.iter_lines():
     if response_line:
-      process_tweet(json.loads(response_line))
+      await process_tweet(json.loads(response_line))
 
-def process_tweet(tweet):
+async def process_tweet(tweet):
   global stats, start_time
 
   stats["total_tweets"]+=1
@@ -120,6 +121,8 @@ def log_to_console(stats):
 def find_urls(tweet):
   urls_in_tweet=0
   images_in_tweet=0
+
+  # Not all tweets have urls
   try:
     for url in tweet['data']['entities']['urls']:
       if urlparse(url['expanded_url']).netloc not in domains:
@@ -132,6 +135,7 @@ def find_urls(tweet):
     pass
   return urls_in_tweet, contains_img_url
 
+# Surprisingly not very common
 def has_image(url):
   return re.match("\.(jpeg|jpg|gif|png)$",url)
    
