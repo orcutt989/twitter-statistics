@@ -133,11 +133,8 @@ def find_urls(tweet):
   return urls_in_tweet, contains_img_url
 
 def has_image(url):
-  if re.match("\.(jpeg|jpg|gif|png)$",url):
-    return True
-  else:
-    return False
-
+  return re.match("\.(jpeg|jpg|gif|png)$",url)
+   
 def get_hashtags(tweet):
   global hashtags
   for term in tweet['data']['text'].split():
