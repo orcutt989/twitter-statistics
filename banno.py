@@ -1,17 +1,9 @@
-import os
-import requests
-import json
-import time
-import asyncio
-import emoji
-import re
+import os, requests, json, time, asyncio, emoji, re, requests_async
 from urllib.parse import urlparse
 from collections import Counter
-import datetime as dt
 from pprint import pprint
 from requests.auth import AuthBase
 from requests.auth import HTTPBasicAuth
-import requests_async
 
 consumer_key = os.environ['KEY']
 consumer_secret = os.environ['SECRET']
