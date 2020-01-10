@@ -30,7 +30,8 @@
    `export SECRET='YOUR_CONSUMER_API_SECRET'`
 4. Clone this repo.
 5. `cd` to the directory of the project
-6. Execute the Python script with `python banno.py` and watch the console.
+6. Run `pip install requests emoji requests_async`
+7. Execute the Python script with `python banno.py` and watch the console.
 
 ![screenshot](screenshot.gif)
 
