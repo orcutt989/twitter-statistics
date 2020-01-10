@@ -4,12 +4,21 @@
 
  An application that connects to the Tweets API and processes incoming tweets to compute various statistics.
 
+## Docker
+
+1. Install Docker
+2. Clone this repo.
+3. `cd` to the directory of the project
+4. Run `docker-compose run banno`
+
+## No Docker
+
 1. Install Python 3.7.4
 2. Store your Twitter consumer key as an environment variable named `KEY`.
 3. Store your Twitter consumer secret as an environment variable named `SECRET`.
 4. Clone this repo.
 5. `cd` to the directory of the project
-6. Execute the Python script with `python banno.rb` and watch the console.
+6. Execute the Python script with `python banno.py` and watch the console.
 
 ![screenshot](screenshot.gif)
 
@@ -21,7 +30,6 @@
 ## Todos
 
 1. Better Logging
-2. Containerize
-3. Interface with front-end like Splunk or Kibana
-4. Better async
-5. Testing, including async tests
+1. Interface with front-end like Splunk or Kibana
+2. Better async
+3. Testing, including async tests

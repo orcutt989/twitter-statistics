@@ -1,0 +1,9 @@
+version: '3'
+services:
+  banno:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+       - "KEY=${KEY}"
+       - "SECRET=${SECRET}"

@@ -7,7 +7,6 @@ import emoji
 import re
 from urllib.parse import urlparse
 from collections import Counter
-from reprint import output
 import datetime as dt
 from pprint import pprint
 from requests.auth import AuthBase
@@ -59,7 +58,7 @@ class BearerTokenAuth(AuthBase):
       data={'grant_type': 'client_credentials'},
       headers={"User-Agent": "TwitterDevSampledStreamQuickStartPython"})
 
-    if response.status_code is not 200:
+    if response.status_code != 200:
       raise Exception(f"Cannot get a Bearer token (HTTP %d): %s" % (response.status_code, response.text))
 
     body = response.json()
