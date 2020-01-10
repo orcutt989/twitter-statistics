@@ -5,17 +5,29 @@
 ## Docker
 
 1. Install Docker
-2. Store your Twitter consumer key as an environment variable named `KEY`.
-3. Store your Twitter consumer secret as an environment variable named `SECRET`.
-4. Clone this repo.
-5. `cd` to the directory of the project
-6. Run `docker-compose run banno`
+2. Get your consumer key and consumer secret from the [Twitter App Dashboard](https://developer.twitter.com/en/apps). (Details>>Keys and tokens)
+3. Store your Twitter consumer key as a local environment variable named `KEY`.
+
+   `export KEY='YOUR_CONSUMER_API_KEY'`
+
+4. Store your Twitter consumer secret as a local environment variable named `SECRET`.
+
+   `export SECRET='YOUR_CONSUMER_API_SECRET'`
+5. Clone this repo.
+6. `cd` to the directory of the project
+7. Run `docker-compose run banno`
 
 ## No Docker
 
 1. Install Python 3.7.4
-2. Store your Twitter consumer key as an environment variable named `KEY`.
-3. Store your Twitter consumer secret as an environment variable named `SECRET`.
+1. Get your app's consumer key and consumer secret from the [Twitter App Dashboard](https://developer.twitter.com/en/apps). (Details>>Keys and tokens)
+3. Store your Twitter consumer key as a local environment variable named `KEY`.
+
+   `export KEY='YOUR_CONSUMER_API_KEY'`
+
+4. Store your Twitter consumer secret as a local environment variable named `SECRET`.
+
+   `export SECRET='YOUR_CONSUMER_API_SECRET'`
 4. Clone this repo.
 5. `cd` to the directory of the project
 6. Execute the Python script with `python banno.py` and watch the console.
