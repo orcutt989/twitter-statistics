@@ -1,7 +1,5 @@
 # banno
 
-## This is a proof-of-concept
-
  An application that connects to the Tweets API and processes incoming tweets to compute various statistics.
 
 ## Docker
