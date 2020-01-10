@@ -7,9 +7,11 @@
 ## Docker
 
 1. Install Docker
-2. Clone this repo.
-3. `cd` to the directory of the project
-4. Run `docker-compose run banno`
+2. Store your Twitter consumer key as an environment variable named `KEY`.
+3. Store your Twitter consumer secret as an environment variable named `SECRET`.
+4. Clone this repo.
+5. `cd` to the directory of the project
+6. Run `docker-compose run banno`
 
 ## No Docker
 
