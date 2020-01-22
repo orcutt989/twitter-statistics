@@ -128,7 +128,7 @@ def find_urls(tweet):
 
 # Surprisingly not very common
 def has_image(url):
-  return re.match("\.(jpeg|jpg|gif|png)$",url)
+  return re.match("[.](jpeg|jpg|gif|png)$",url)
    
 def get_hashtags(tweet):
   global hashtags
