@@ -4,6 +4,7 @@
 
 *.sh
 *.ps1
+__pycache__
 
 ### macOS ###
 # General

@@ -1,12 +1,12 @@
-import os, requests, json, time, asyncio, emoji, re, requests_async
+import os, requests, json, time, asyncio, emoji, re, requests_async, sys
 from urllib.parse import urlparse
 from collections import Counter
 from pprint import pprint
 from requests.auth import AuthBase
 from requests.auth import HTTPBasicAuth
 
-consumer_key = os.environ['KEY']
-consumer_secret = os.environ['SECRET']
+consumer_key = os.environ.get('KEY','1')
+consumer_secret = os.environ.get('SECRET','1')
 
 log_interval=2.0
 launch_time = start_time = time.time()
@@ -155,5 +155,6 @@ def has_emoji(tweet):
 bearer_token = BearerTokenAuth(consumer_key, consumer_secret)
 
 # Listen to the stream. This reconnection logic will attempt to reconnect as soon as a disconnection is detected.
-while True:
-  asyncio.run(stream_connect(bearer_token))
+if len(sys.argv)>1 and sys.argv[1]=='-run':
+  while True:
+    asyncio.run(stream_connect(bearer_token))
