@@ -45,6 +45,19 @@
 1. There aren't many tweets containing direct URLs to image files these days.
 2. Async is processing is performed via [requests_async](https://github.com/encode/requests-async#streaming-responses--requests) and [asyncio](https://docs.python.org/3/library/asyncio.html)
 
+## Automation Overview
+
+All automations are handled by Github Actions.
+
+* Continuous Integration
+* Continuous Deployment
+* Python Linting
+* Integration Testing
+* Automated Versioning
+* Documentation Generation
+* CHANGELOG Generation
+* Mutation Testing
+
 ## Branch Protection
 
 Pushing directly to mater is prohibited by anyone.  A separate branch (a "development branch") needs to be created, and then a PR to merge a development branch into master will need to be reviewed.
