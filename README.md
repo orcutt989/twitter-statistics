@@ -45,6 +45,12 @@
 1. There aren't many tweets containing direct URLs to image files these days.
 2. Async is processing is performed via [requests_async](https://github.com/encode/requests-async#streaming-responses--requests) and [asyncio](https://docs.python.org/3/library/asyncio.html)
 
+## Culture
+
+More important than tooling or automation is culture. You can use Kubernetes and CI/CD automation, but none of it will work without making decisions about your product's development process and team culture.
+
+For this repository the decision was made that the development team would perform development on versioned branches instead of directly to master.  Releases are not entirely automatic, however when a PR for a development branch is approved and merged, a release is generated based on that version number.
+
 ## Automation Overview
 
 All automations are handled by Github Actions.
