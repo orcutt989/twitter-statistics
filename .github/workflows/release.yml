@@ -1,0 +1,14 @@
+name: release
+
+on:
+  push:
+    branches: master
+jobs:
+  build-n-publish:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+      with:
+        config-name: release-template.yml
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
