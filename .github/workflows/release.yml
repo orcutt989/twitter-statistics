@@ -17,8 +17,3 @@ jobs:
           config-name: release-template.yml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish draft release
-        uses: actions/public-draft-release@v1.0.0
-        env:
-          # Access the `GITHUB_TOKEN` secret from the repository's secrets
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
