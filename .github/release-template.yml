@@ -1,5 +1,8 @@
 name-template: 'v$NEXT_PATCH_VERSION 🌈'
 tag-template: 'v$NEXT_PATCH_VERSION'
+label-versioning:
+  enabled: true
+  auto-release: true 
 categories:
   - title: '🚀 Features'
     labels:
