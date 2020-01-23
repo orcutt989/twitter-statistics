@@ -43,7 +43,7 @@
 ## Interesting Things
 
 1. There aren't many tweets containing direct URLs to image files these days.
-2. Async is processing is performed via [requests_async](https://github.com/encode/requests-async#streaming-responses--requests) and [asyncio](https://docs.python.org/3/library/asyncio.html)
+2. Async processing is performed via [requests_async](https://github.com/encode/requests-async#streaming-responses--requests) and [asyncio](https://docs.python.org/3/library/asyncio.html)
 
 ## Culture
 
