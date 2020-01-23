@@ -64,6 +64,10 @@ All automations are handled by Github Actions.
 * CHANGELOG Generation
 * Mutation Testing
 
+## Releases
+
+Draft releases are genreated when a commit to master is detected, but publishing is still manual. This prevents any unintended features from entering the latest release.
+
 ## Branch Protection
 
 Pushing directly to mater is prohibited by anyone.  A separate branch (a "development branch") needs to be created, and then a PR to merge a development branch into master will need to be reviewed.
