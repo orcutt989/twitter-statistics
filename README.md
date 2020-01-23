@@ -45,12 +45,12 @@
 1. There aren't many tweets containing direct URLs to image files these days.
 2. Async is processing is performed via [requests_async](https://github.com/encode/requests-async#streaming-responses--requests) and [asyncio](https://docs.python.org/3/library/asyncio.html)
 
-# Continuous Integration
+## Continuous Integration
 
 Continuous integration is performed by GitHub actions. To view the latest actions and whether they have passed or not click the `Actions` button at the top of the repo.
 
 Tests are executed on every commit with `pytest` and are located in `test_banno.py`.
 
-# Linting
+## Linting
 
 Python linting is also performed with GitHub actions and utlizes `Flake8`. Linting is performed on every commit.
