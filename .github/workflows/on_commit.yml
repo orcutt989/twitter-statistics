@@ -1,4 +1,4 @@
-name: Python application
+name: on_commit
 
 on: [push]
 
