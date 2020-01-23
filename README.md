@@ -1,4 +1,4 @@
-# twitter-statistics
+# twitter-statistics 
 
 An application that connects to the Tweets API and processes incoming tweets to compute various statistics.
 
@@ -63,6 +63,10 @@ All automations are handled by Github Actions.
 * Documentation Generation
 * CHANGELOG Generation
 * Mutation Testing
+
+## Releases
+
+Draft releases are genreated when a commit to master is detected, but publishing is still manual. This prevents any unintended features from entering the latest release.
 
 ## Branch Protection
 
