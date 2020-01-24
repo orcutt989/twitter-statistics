@@ -1,4 +1,4 @@
-# twitter-statistics 
+# twitter-statistics
 
 An application that connects to the Tweets API and processes incoming tweets to compute various statistics.
 
@@ -65,7 +65,7 @@ All automations are handled by Github Actions.
 
 ## Releases
 
-Draft releases are genreated when a commit to master is detected, but publishing is still manual. This prevents any unintended features from entering the latest release.
+Draft releases are generated when a commit to master is detected, but publishing is still manual. This prevents any unintended features from entering the latest release.
 
 ## Branch Protection
 
@@ -79,4 +79,4 @@ Tests are executed on every commit with `pytest` and are located in `test_banno.
 
 ## Linting
 
-Python linting is also performed with GitHub actions and utlizes `Flake8`. Linting is performed on every commit.
+Python linting is also performed with GitHub actions and utilizes `Flake8`. Linting is performed on every commit.
