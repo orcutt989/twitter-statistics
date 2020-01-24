@@ -1,4 +1,4 @@
-# twitter-statistics 
+# twitter-statistics
 
 An application that connects to the Tweets API and processes incoming tweets to compute various statistics.
 
@@ -62,11 +62,10 @@ All automations are handled by Github Actions.
 * Automated Versioning
 * Documentation Generation
 * CHANGELOG Generation
-* Mutation Testing
 
 ## Releases
 
-Draft releases are genreated when a commit to master is detected, but publishing is still manual. This prevents any unintended features from entering the latest release.
+Draft releases are generated when a commit to master is detected, but publishing is still manual. This prevents any unintended features from entering the latest release.
 
 ## Branch Protection
 
@@ -78,6 +77,22 @@ Continuous integration is performed by GitHub actions. To view the latest action
 
 Tests are executed on every commit with `pytest` and are located in `test_banno.py`.
 
+## Continuous Deployment & Automatic Versioning
+
+When a PR is approved and the respective branch is merged a release is drafted and the version incremented. At this time versioning is minor only but can be changed depending on a keyword in a PR title.  At this time there are no Git Hub actions that support incrementing the version, drafting a release, and publshing a release. For the sake of time and without having to write our own Github Action, we'll say that releases need to be manually published to prevent mistakes from entering a public build.
+
 ## Linting
 
-Python linting is also performed with GitHub actions and utlizes `Flake8`. Linting is performed on every commit.
+Python linting is also performed with GitHub actions and utilizes `Flake8`. Linting is performed on every commit.
+
+## Integration Tests
+
+For the sake of time a simple test suite of 2 tests were added to this repository. To satisfy real-word demands, the test suite would most likely be 500+ lines long for sufficient code coverage.
+
+## Mutation Tests
+
+`mutmut` reports 162 possible places for mutations not covered by tests. For the sake of time these were not added, however mutation tests would most likely expand the tests by anywhere from 200-500 more lines of code.  `mutmut` could be included in a GitHub Action, however it takes about 5 minutes for it to run all mutation tests and since there are no cases testing for these at this time, it was omitted and ran manually.
+
+## Spell Check
+
+At this time there is not a sufficient Git Hub action to implement a spell-checker. One will need to be written.  
