@@ -62,7 +62,6 @@ All automations are handled by Github Actions.
 * Automated Versioning
 * Documentation Generation
 * CHANGELOG Generation
-* Mutation Testing
 
 ## Releases
 

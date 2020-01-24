@@ -5,6 +5,7 @@
 *.sh
 *.ps1
 __pycache__
+.mutmut*
 
 ### macOS ###
 # General
