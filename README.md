@@ -81,6 +81,10 @@ Tests are executed on every commit with `pytest` and are located in `test_banno.
 
 When a PR is approved and the respective branch is merged a release is drafted and the version incremented. At this time versioning is minor only but can be changed depending on a keyword in a PR title.  At this time there are no Git Hub actions that support incrementing the version, drafting a release, and publshing a release. For the sake of time and without having to write our own Github Action, we'll say that releases need to be manually published to prevent mistakes from entering a public build.
 
+## CHANGELOG generation
+
+The Changelog is generated when a release is published. Changes include commits and PR titles if they are available.  Changes are also supplied to the body of the release upon draft.
+
 ## Linting
 
 Python linting is also performed with GitHub actions and utilizes `Flake8`. Linting is performed on every commit.
