@@ -80,3 +80,7 @@ Tests are executed on every commit with `pytest` and are located in `test_banno.
 ## Linting
 
 Python linting is also performed with GitHub actions and utilizes `Flake8`. Linting is performed on every commit.
+
+## Integration Tests
+
+For the sake of time a simple test suite of 2 tests were added to this repository. To satisfy real-word demands, the test suite would most likely be 500+ lines long for sufficient code coverage.
