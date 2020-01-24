@@ -92,3 +92,7 @@ For the sake of time a simple test suite of 2 tests were added to this repositor
 ## Mutation Tests
 
 `mutmut` reports 162 possible places for mutations not covered by tests. For the sake of time these were not added, however mutation tests would most likely expand the tests by anywhere from 200-500 more lines of code.  `mutmut` could be included in a GitHub Action, however it takes about 5 minutes for it to run all mutation tests and since there are no cases testing for these at this time, it was omitted and ran manually.
+
+## Spell Check
+
+At this time there is not a sufficient Git Hub action to implement a spell-checker. One will need to be written.  
