@@ -1,0 +1,5 @@
+- name: Python Source
+  sources:
+  - pyspelling/**/*.py
+  aspell:
+    lang: en
