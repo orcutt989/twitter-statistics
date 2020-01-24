@@ -1,5 +1,14 @@
 # Changelog
 
+## [v1.0.4](https://github.com/orcutt989/twitter-statistics/tree/v1.0.4) (2020-01-24)
+
+[Full Changelog](https://github.com/orcutt989/twitter-statistics/compare/v1.0.3...v1.0.4)
+
+**Merged pull requests:**
+
+- added blurb to readme about changelog [\#9](https://github.com/orcutt989/twitter-statistics/pull/9) ([orcutt989](https://github.com/orcutt989))
+- readme changes and trying out spellecheck [\#8](https://github.com/orcutt989/twitter-statistics/pull/8) ([orcutt989](https://github.com/orcutt989))
+
 ## [v1.0.3](https://github.com/orcutt989/twitter-statistics/tree/v1.0.3) (2020-01-23)
 
 [Full Changelog](https://github.com/orcutt989/twitter-statistics/compare/v1.0.2...v1.0.3)
