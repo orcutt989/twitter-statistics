@@ -6,7 +6,7 @@
 *.ps1
 __pycache__
 .mutmut*
-
+.mutmut-cache
 ### macOS ###
 # General
 .DS_Store
